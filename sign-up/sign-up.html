@@ -21,63 +21,15 @@
         <input type="password" id="password" name="password" required> <br><br>
 
         <button type="submit">Submit</button>
+        <p>If you already have an account, <a href="../Login/login.html">Log in</a></p>
+
 
     </form>
 
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-
-        const name = document.getElementById("name");
-        const email = document.getElementById("email");
-        const password = document.getElementById("password");
-
-        function signup(event) {
-            event.preventDefault();
-            const form = event.target;
-            const name = form.elements.name.value;
-            const email = form.elements.email.value;
-            const password = form.elements.password.value;
-
-            if (password.length <= 6) {
-                document.body.innerHTML += '<div style="color: red;">password length must be greater than 6</div>';
-            }
-
-            else {
-                const userData = {
-                    Name: name,
-                    Email: email,
-                    Password: password
-                }
-                addUser(userData);
-            }
-        }
-
-        async function addUser(userData) {
-
-
-            try {
-
-                let response = await axios.post("http://localhost:3000/add-user/add", userData);
-                if (response.status === 200) {
-                    alert("User Successfully Created!");
-                }
-                name.value = '';
-                email.value = '';
-                password.value = '';
-
-
-                console.log(response.data);
-
-            } catch (err) {
-                console.log(err);
-                document.body.innerHTML += '<div style="color: red;">Bad Parameters, or Email already Exists</div>';
-
-
-
-            }
-        }
-    </script>
+    <script src="script.js"></script>
+   
 </body>
 
 </html>
