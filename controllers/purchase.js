@@ -32,9 +32,8 @@ const updateTransactionStatus = async (req, res ) => {
         const { payment_id, order_id,status} = req.body;
         const order  = await Order.findOne({where : {orderid : order_id}}) //2
         if (status === 'FAILED') {
-            // Update order status to FAILED
             await order.update({ status: 'FAILED' });
-            return res.status(202).json({ success: true, message: "Transaction Failed" });
+            return res.status(202).json({ Success: true, message: "Transaction Failed" });
         }
         const promise1 =  order.update({ paymentid: payment_id, status: 'SUCCESSFUL'}) 
         const promise2 =  req.user.update({ ispremiumuser: true }) 
