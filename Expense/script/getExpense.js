@@ -4,7 +4,8 @@ btn.addEventListener("click", getExpense);
 
 async function getExpense() {
     try {
-        const res = await axios.get("http://localhost:3000/get-expense/expense");
+        const token=localStorage.getItem("token")
+        const res = await axios.get("http://localhost:3000/get-expense/expense", { headers:{"Authorization":token} });
 
         if (res.status === 200) {
             const elist = document.getElementById("expenses-list");
@@ -32,8 +33,8 @@ async function getExpense() {
 
                 deletebtn.addEventListener("click", async () => {
                     try {
-
-                        const res = await axios.delete(`http://localhost:3000/delete-expense/delete/${expense.id}`);
+                        const token=localStorage.getItem("token");
+                        const res = await axios.delete(`http://localhost:3000/delete-expense/delete/${expense.id}`,{ headers: {"Authorization" : token} });
 
                         if (res.status === 200) {
 

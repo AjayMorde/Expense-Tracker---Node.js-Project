@@ -1,16 +1,23 @@
 const Users = require('../connections/user');
 const bcrypt = require('bcrypt');
+const jwt=require('jsonwebtoken');
 
 
-function isDataValid(data) {
-    if (data == undefined || data.length === 0) {
-        return true;
-    } else {
-        return false;
-    }
+// generating a token here
+
+function  generateAccessToken(id,name , ispremiumuser){
+    return jwt.sign({userId:id,name:name, ispremiumuser},'a46142352jay2352morde5674b784hjfiuye68940sjhhreurh34934i')
 }
 
 const userLogin = async (req, res) => {
+
+    function isDataValid(data) {
+        if (data == undefined || data.length === 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     try {
         const email = req.body.email;
         const password = req.body.password;
@@ -36,7 +43,7 @@ const userLogin = async (req, res) => {
                 res.status(401).json({ msg: 'Wrong password' });
             } else {
                 console.log('Login successful');
-                res.status(200).json({ Email: user.Email });
+                res.status(200).json({ msg: "user log-in successfully",token: generateAccessToken(user.id,user.Name, user.ispremiumuser) });
             }
         }
 

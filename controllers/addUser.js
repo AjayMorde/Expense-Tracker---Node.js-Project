@@ -1,15 +1,18 @@
 const Users = require('../connections/user');
 const bcrypt = require('bcrypt');
 
-function isDataValid(data) {
-    if (data == undefined || data.length === 0) {
-        return true;
-    } else {
-        return false;
-    }
-}
+
+
 
 const addUser = async (req, res) => {
+
+    function isDataValid(data) {
+        if (data == undefined || data.length === 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     try {
         const Name = req.body.Name;

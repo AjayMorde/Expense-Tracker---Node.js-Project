@@ -24,7 +24,8 @@ async function checkData(userData) {
         console.log(res.data);
         if (res.status === 200) {
             alert("Login successful!");
-            window.location.href="../Expense/index3.html"
+            localStorage.setItem('token',res.data.token);
+            window.location.href="../Expense/index3.html";
         }
 
         emailValue.value = '';

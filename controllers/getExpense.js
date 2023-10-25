@@ -2,7 +2,7 @@ const Expense = require('../connections/expense');
 
 const getAllExpense = async (req, res) => {
     try {
-        const data = await Expense.findAll();         
+        const data = await Expense.findAll( {where: {UserId:req.user.id}} );   // only those expense which id of that Expense match with User uid        
 
         res.status(200).json({ data: data })
     }

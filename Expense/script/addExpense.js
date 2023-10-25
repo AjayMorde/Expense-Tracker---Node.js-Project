@@ -18,7 +18,8 @@ function onSubmit(e) {
             Description: description.value,
             Category: category.value,
         };
-        axios.post("http://localhost:3000/add-expense/expense", details).
+        const token=localStorage.getItem("token")
+        axios.post("http://localhost:3000/add-expense/expense", details, { headers: {"Authorization" : token} }).
             then(({ data }) => {
                 amount.value='';
                 description.value='';
