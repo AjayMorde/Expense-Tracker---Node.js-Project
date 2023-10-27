@@ -55,4 +55,7 @@ const userLogin = async (req, res) => {
 
     }
 }
-module.exports = { userLogin };
+module.exports = { 
+    userLogin ,
+    generateAccessToken
+};

@@ -1,4 +1,4 @@
-const Expense = require('../connections/expense');
+const Expense = require('../connections/expense');  
 
 const getAllExpense = async (req, res) => {
     try {

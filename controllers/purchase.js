@@ -7,13 +7,13 @@ const purchasepremium = async (req, res) => {
        
         const rzp = new Razorpay({
             key_id: process.env.RAZORPAY_KEY_ID,
-             key_secret: process.env.RAZORPAY_KEY_SECRET
+             key_secret:  process.env.RAZORPAY_KEY_SECRET 
         });
 
 
         
         
-        const amount = 2500;
+        const amount = 250;
         const order = await rzp.orders.create({ amount, currency: "INR" });//this is for creating a new payment order
         console.log('=========================================================================>',order);
 

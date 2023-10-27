@@ -4,21 +4,23 @@ document.getElementById('rzp-button1').onclick = async function (e) {
     console.log(response);
     var options =
     {
-        "key": response.data.key_id, // Enter the Key ID generated from the Dashboard
-        "order_id": response.data.order.id,// For one time payment
-        // This handler function will handle the success payment
+        "key": response.data.key_id, // enter the Key ID generated from the dashboard
+        "order_id": response.data.order.id,// for one time payment
+       //handling a success payment
         "handler": async function (response) {
             const res = await axios.post('http://localhost:3000/purchase/updatetransactionstatus', {
                 order_id: options.order_id,
                 payment_id: response.razorpay_payment_id,
-            }, { headers: { "Authorization": token } })
+            },{ headers: {"Authorization": token}  })
 
-            console.log(res)
+            console.log("==========================================================================================================================================")
             alert('You are a Premium User Now')
-            document.getElementById('message').style.display = 'block';
+            document.getElementById('rzp-button1').style.visibility="hidden"
+            document.getElementById('message').innerHTML="You are a premium user";
+            // localStorage.setItem('isadmin',true);
              localStorage.setItem('token', res.data.token)
-             showPremiumuserMessage()
-             showLeaderboard();
+             showLeaderboard()
+         
 
         },
     };
@@ -40,3 +42,6 @@ document.getElementById('rzp-button1').onclick = async function (e) {
         console.log(res);
     });
 }
+
+
+
