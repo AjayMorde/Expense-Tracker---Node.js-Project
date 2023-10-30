@@ -1,19 +1,35 @@
 const Expense = require('../connections/expense');
+const Users = require('../connections/user');
+const sequelize=require('../connections/database');
 
 
 const deleteExpense = async (req, res) => {
+  const t = await sequelize.transaction();
   try {
-    const userId = req.params.id;    
+    const expenseId= req.params.id;    
     
 
-    if (userId== undefined || userId.length === 0) {
+    if (expenseId== undefined || expenseId.length === 0) {
       return res.status(400).json({ success: false });
   }
+  const expense = await Expense.findByPk(expenseId);
+    await Users.update(
+    {
+        totalExpenses: req.user.totalExpenses - expense.amount,
+    },{ where: { id: req.user.id } } ,{ transaction: t });
     
     
-    let destroy = await Expense.destroy({ where: { id: userId, UserId: req.user.id } });
+    let destroy = await Expense.destroy({ where: { id: expenseId, UserId: req.user.id } },{ transaction: t });
 
-    res.status(200).json({ Data: destroy });
+    if (destroy === 0) {
+      await t.rollback();
+      return res.status(404).json({
+          success: false,
+          message: 'expense not match to the user'
+      });
+  }
+
+     return res.status(200).json({ success: true, message: 'Deleted Successfully'});
   }
   catch (err) {
     console.log(err);

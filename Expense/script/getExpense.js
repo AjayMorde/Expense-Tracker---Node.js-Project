@@ -3,44 +3,37 @@ function showPremiumUserMessage() {
     document.getElementById('rzp-button1').style.visibility = "hidden"; 
     document.getElementById('message').innerHTML = "You are a premium user";
 }
-
+function showLeaderboard() {
     const inputElement = document.createElement('input');
     inputElement.type = 'button';
     inputElement.value = 'Show Leaderboard';
 
     inputElement.onclick = async () => {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:3000/premiumuser/showLeaderBoard', { headers: { "Authorization": token } });
 
-        const userLeaderboardArray=response.data;
-        console.log('=====================================>', userLeaderboardArray);
-        var leaderboardElem = document.getElementById('leaderboard');
-        leaderboardElem.innerHTML = '<h1> Leader board</h1>';
+        try {
+            const response = await axios.get('http://localhost:3000/premiumuser/showLeaderBoard', {
+                headers: { "Authorization": token }
+            });
 
-        userLeaderboardArray.forEach((userDetails) => {
-            leaderboardElem.innerHTML += `<li>Name - ${userDetails.name} Total-Expense - ${userDetails.total_cost}`;
-        });
+            const userLeaderboardArray = response.data;
+            console.log('=====================================>', userLeaderboardArray);
+
+            var leaderboardElem = document.getElementById('leaderboard');
+            leaderboardElem.innerHTML = ''; // Clear the previous leaderboard data
+            leaderboardElem.innerHTML += '<h1> Leaderboard</h1>';
+
+            userLeaderboardArray.forEach((userDetails) => {
+                leaderboardElem.innerHTML += `<li>Name - ${userDetails.Name} Total Expense - ${userDetails.totalExpenses}</li>`;
+            });
+        } catch (error) {
+            console.error(error);
+            // Handle error here, e.g., display an error message to the user
+        }
     }
     document.getElementById('message').appendChild(inputElement);
-    function showLeaderboard() {
-        const inputElement = document.createElement('input');
-        inputElement.type = 'button';
-        inputElement.value = 'Show Leaderboard';
-    
-        inputElement.onclick = async () => {
-            const token = localStorage.getItem('token');
-            const userLeaderboardArray = await axios.get('http://localhost:3000/premiumuser/showLeaderBoard', { headers: { "Authorization": token } });
-            console.log('=====================================>', userLeaderboardArray);
-            var leaderboardElem = document.getElementById('leaderboard');
-            leaderboardElem.innerHTML = '<h1> Leader board</h1>';
-    
-            userLeaderboardArray.data.userLeaderboardDetails.forEach((userDetails) => {
-                leaderboardElem.innerHTML += `<li>Name - ${userDetails.name} Total-Expense - ${userDetails.total_cost}</li>`;
-            });
-        }
-        document.getElementById('message').appendChild(inputElement);
-    }
-    
+}
+
 
 
 

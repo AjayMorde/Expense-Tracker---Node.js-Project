@@ -34,6 +34,8 @@ async function addUser(userData) {
         let response = await axios.post("http://localhost:3000/add-user/signup", userData);
         if (response.status === 200) {
             alert("User Successfully Created!");
+            window.location.href="../Login/login.html";
+
         }
         
         name.value = '';

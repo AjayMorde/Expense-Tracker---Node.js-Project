@@ -25,13 +25,13 @@ function onSubmit(e) {
                 description.value='';
                 category.value='';
                 const ID = data.Success.id
-                console.log("this is the ucces is---------------------------------------->"+data.Success.id)
+                console.log("this is the Success is---------------------------------------->"+data.Success.id)
                 // addonedetail(ID);
                 alert('Details Successfully Saved!');
             })
             .catch((err) => {
                 console.error(err);
-                alert("Duplicate Entry Found, Please Register Again!")
+                alert("Something went wrong")
             });
     }
 }
