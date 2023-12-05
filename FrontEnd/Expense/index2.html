@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Expenses</title>
+    <link rel="stylesheet" href="./css/index2.css">
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/FrontEnd/Expense/index3.html">Home</a>
+                </li>
+                <li>
+                    <a href="/FrontEnd/Expense/index1.html">Add-Expense</a>
+                </li>
+                <li>
+                    <a href="/FrontEnd/Expense/index2.html"class="active">Watch-Expenses</a>
+                </li>
+                <li>
+                    <a href="/FrontEnd/Expense/index4.html">Premium Features</a>
+                </li>
+                <li>
+                    <a href="../Login/login.html">Log Out</a>
+                </li>
+             
+            </ul>
+        </nav>
+    </header>
+    <br><br><br><br><br>
+
+    <h3>My Expense List</h3>
+   
+
+    <hr>
+   
+    <div id="expenses-list">
+       
+    </div>
+    <div id="pagination"></div>
+
+    <div id="search-container">
+        <label for="pageSearch">Go to Page:</label>
+        <input type="number" id="pageSearch" />
+        <button onclick="goToPage()">Go</button>
+    </div>
+    <br>
+    
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./script/getExpense.js"></script>
+    <!-- <script src="./script/purchase.js"></script> -->
+   
+
+
+    
+</body>
+
+</html>

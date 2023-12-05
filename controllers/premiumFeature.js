@@ -1,5 +1,5 @@
 // const Expense = require('../connections/expense');
-const Users = require('../connections/user');
+const Users = require('../models/user');
 // const sequelize = require('../connection/database');
 
 const getUserLeaderBoard = async (req, res) => {

@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const premiumFeatures = require('../controllers/premiumFeature');
 
-const authenticate = require('../Authenticate/auth');
+const userautheticate=require('../middleware/auth');
 
 
-router.get('/showLeaderBoard', authenticate.authenticate, premiumFeatures.getUserLeaderBoard );
+router.get('/showLeaderBoard', userautheticate.authenticate, premiumFeatures.getUserLeaderBoard );
 module.exports = router;

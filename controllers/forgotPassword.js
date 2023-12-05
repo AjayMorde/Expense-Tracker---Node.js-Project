@@ -1,6 +1,6 @@
 const path = require("path");
-const User = require("../connections/user");
-const ForgotPassword = require("../connections/forgotPassword");
+const User = require("../models/user");
+const ForgotPassword = require("../models/forgotPassword");
 const bcrypt = require("bcrypt");
 const Sib = require("sib-api-v3-sdk");
 const { v4: uuidv4 } = require("uuid");
@@ -36,7 +36,7 @@ const forgotPassword = async (req, res) => {
 
         const client = Sib.ApiClient.instance;
         const apiKey = client.authentications["api-key"];
-        apiKey.apiKey = "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";
+        apiKey.apiKey =  process.env.API_KEY;
         
 
         const transEmailApi = new Sib.TransactionalEmailsApi();

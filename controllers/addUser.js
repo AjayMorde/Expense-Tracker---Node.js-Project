@@ -1,4 +1,4 @@
-const Users = require('../connections/user');
+const Users = require('../models/user');
 const bcrypt = require('bcrypt');
 
 
@@ -40,4 +40,32 @@ const addUser = async (req, res) => {
         res.status(404).json({ msg: 'something went wrong' });
     }
 };
-module.exports = { addUser }
+
+
+
+
+
+    const getName = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const user = await Users.findByPk(id);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const userName = user.Name;
+    console.log('===================================================================================================',userName)
+
+    res.status(200).json({ userName });
+  } catch (error) {
+    console.error('Error fetching user name:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
+
+
+module.exports = { addUser
+}

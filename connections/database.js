@@ -1,6 +1,7 @@
-const Sequelize=require('sequelize');
-const sequelize=new Sequelize('ExpenseTrackeApp','root','Ajay@1998',{  
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
     dialect:'mysql',
-    host:'localhost'
-})
-module.exports=sequelize;
+    host: process.env.DB_HOST
+  });
+  
+  module.exports = sequelize;

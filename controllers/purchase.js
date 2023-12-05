@@ -1,5 +1,5 @@
 const Razorpay = require('razorpay');
-const Order = require('../connections/order');
+const Order = require('../models/order');
 const userController = require('./userLogin');
 
 const purchasepremium = async (req, res) => {
