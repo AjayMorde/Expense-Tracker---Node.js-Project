@@ -6,7 +6,7 @@ const Expense = sequelize.define('Expense', {
       autoIncrement: true,
       allowNull: false,
       unique: true,
-      primaryKey: true,
+      primaryKey: true, 
       
     },
     amount: Sequelize.FLOAT,
