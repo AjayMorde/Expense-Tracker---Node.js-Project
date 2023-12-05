@@ -5,4 +5,4 @@ const routes=require('../controllers/addUser');
 router.post('/signup',routes.addUser);
 
 
-module.exports=router
+module.exports=router 
