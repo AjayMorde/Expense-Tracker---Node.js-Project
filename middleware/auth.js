@@ -10,7 +10,7 @@ const authenticate = async (req, res, next) => {
         // console.log('the token is --------------------------------------------------------------->',token);
 
         
-        const user=jwt.verify(token,process.env.JWT_SECRET);
+        const user =jwt.verify(token,process.env.JWT_SECRET);
 
 
 
