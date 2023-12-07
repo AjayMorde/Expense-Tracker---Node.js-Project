@@ -55,7 +55,7 @@ const forgotPassword = async (req, res) => {
             subject: "Expense Tracker Reset Password",
             textContent: "Link Below",
             htmlContent: `<h3>Hi! We got the request from you for resetting the password. Here is the link below >>></h3>
-      <a href="http://localhost:3000/password/resetPassword/${requestId}"> Click Here</a>`,
+      <a href="http://34.235.120.189/password/resetPassword/${requestId}"> Click Here</a>`,
             params: {
                 requestId: requestId,
             },
