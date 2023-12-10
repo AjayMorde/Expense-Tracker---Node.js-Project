@@ -1,12 +1,13 @@
-require('dotenv').config();
-const path= require('path');
 const express = require('express');
+require('dotenv').config();
 const app = express();
 const cors = require('cors');
-const helmet=require('helmet');
-const compression = require('compression');
-const bodyparser = require('body-parser');
+
+
+
+
 const sequelize = require('./connections/database');
+
 const Expense = require('./models/expense');
 const Users = require('./models/user');
 const Order = require('./models/order');
@@ -14,7 +15,7 @@ const Forgotpassword = require('./models/forgotPassword');
 const Download=require('./models/download');
 
 
-
+const mainPageRouter = require('./routes/mainpage');
 const addUser = require('./routes/add-user');
 const userName=require('./routes/getUsername');
 const userLogin = require('./routes/user-login');
@@ -27,14 +28,12 @@ const forgotPassword=  require('./routes/forgotPassword');
 const report= require('./routes/reports');
 
 
-
-
-app.use(express.static(path.join(__dirname+ 'public')));  
 app.use(cors());
-app.use(bodyparser.json({ extended: false }));
-app.use(helmet());
-app.use(compression());
+app.use(express.json());
+app.use(express.urlencoded({extended:false}));
+app.use(express.static('public'));
 
+app.use(mainPageRouter)
 app.use('/add-user', addUser);
 app.use('/user-login', userLogin);
 app.use('/getUser', userName); 

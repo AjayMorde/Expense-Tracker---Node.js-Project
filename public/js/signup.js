@@ -44,7 +44,7 @@ async function addUser(userData) {
         if (response.status === 200) {
             alert("User Successfully Created!");
          
-            window.location.href="../Login/login.html";
+            window.location.href="/views/login.html";
 
         }
         

@@ -69,7 +69,7 @@ function reports()
    messageDiv.appendChild(report);
    report.addEventListener('click', async ()=>
    {
-       window.location.href="../reports/reports.html";
+       window.location.href="/views/reports.html";
    })
 
 }
