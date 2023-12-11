@@ -6,7 +6,7 @@ async function getExpense(page) {
     try {
         const token = localStorage.getItem("token");
 
-        const res = await axios.get(`http://localhost:3000/get-expense/expense?page=${page}`, { headers: { "Authorization": token } });
+        const res = await axios.get(`/get-expense/expense?page=${page}`, { headers: { "Authorization": token } });
         if (res.status === 200) {
             const elist = document.getElementById("expenses-list");
             elist.innerHTML = "";
@@ -40,7 +40,7 @@ async function getExpense(page) {
                 deletebtn.addEventListener("click", async () => {
                     try {
                         const token = localStorage.getItem("token");
-                        const res = await axios.delete(`http://localhost:3000/delete-expense/delete/${expense.id}`, { headers: { "Authorization": token } });
+                        const res = await axios.delete(`/delete-expense/delete/${expense.id}`, { headers: { "Authorization": token } });
 
                         if (res.status === 200) {
                             eItem.remove();

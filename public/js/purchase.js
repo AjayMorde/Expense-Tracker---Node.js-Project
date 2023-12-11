@@ -13,7 +13,7 @@ function showLeaderboard() {
         const token = localStorage.getItem('token');
 
         try {
-            const response = await axios.get('http://localhost:3000/premiumuser/showLeaderBoard', {
+            const response = await axios.get('/premiumuser/showLeaderBoard', {
                 headers: { "Authorization": token }
             });
 
@@ -69,7 +69,7 @@ function reports()
    messageDiv.appendChild(report);
    report.addEventListener('click', async ()=>
    {
-       window.location.href="/views/reports.html";
+       window.location.href="reports";
    })
 
 }
@@ -102,7 +102,7 @@ if (ispremiumuser) {
 
 document.getElementById('rzp-button1').onclick = async function (e) {
     const token = localStorage.getItem('token')
-    const response = await axios.get('http://localhost:3000/purchase/premiummembership', { headers: { "Authorization": token } });
+    const response = await axios.get('/purchase/premiummembership', { headers: { "Authorization": token } });
     console.log(response);
     var options =
     {
@@ -110,7 +110,7 @@ document.getElementById('rzp-button1').onclick = async function (e) {
         "order_id": response.data.order.id,// for one time payment
        //handling a success payment
         "handler": async function (response) {
-            const res = await axios.post('http://localhost:3000/purchase/updatetransactionstatus', {
+            const res = await axios.post('/purchase/updatetransactionstatus', {
                 order_id: options.order_id,
                 payment_id: response.razorpay_payment_id,
             },{ headers: {"Authorization": token}  })
@@ -137,7 +137,7 @@ document.getElementById('rzp-button1').onclick = async function (e) {
         alert('Something went wrong');
 
    
-        const res = await axios.post('http://localhost:3000/purchase/updatetransactionstatus', {
+        const res = await axios.post('/purchase/updatetransactionstatus', {
             order_id: options.order_id,
             payment_id: response.error.metadata.order_id,
             status: 'FAILED',

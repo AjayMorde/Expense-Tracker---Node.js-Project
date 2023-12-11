@@ -9,7 +9,7 @@ const displayWelcomeMessage = (message) => {
 const fetchUserName = async () => {
   try {
     const token = localStorage.getItem('token');
-    const response = await axios.get('http://localhost:3000/getUser/username', {
+    const response = await axios.get('/getUser/username', {
         headers: { "Authorization": token }
     });
     

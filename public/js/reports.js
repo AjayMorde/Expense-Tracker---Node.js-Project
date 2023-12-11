@@ -12,7 +12,7 @@ async function showDailyReport() {
         };
     
     const token  = localStorage.getItem('token');
-    const { data } = await axios.post("http://localhost:3000/report/dailyreport", date, { headers: {"Authorization" : token} });
+    const { data } = await axios.post("/report/dailyreport", date, { headers: {"Authorization" : token} });
     dailyexpenseList.innerHTML=""
     for (let i = 0; i < data.data.length; i++) {
     const html = createExpenseElement(data.data[i]);

@@ -5,7 +5,7 @@ async function forgetPassword(e){
     const details={
         email: e.target.email.value
     }
-    const response= await axios.post("http://localhost:3000/password/forgotpassword", details);
+    const response= await axios.post("/password/forgotpassword", details);
     if(response.status === 200)     
     {    
       

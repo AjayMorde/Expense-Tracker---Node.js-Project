@@ -20,12 +20,12 @@ async function checkData(userData) {
 
     try {
 
-        let res = await axios.post("http://localhost:3000/user-login/login", userData);
+        let res = await axios.post("/user-login/login", userData);
         console.log(res.data);
         if (res.status === 200) {
             alert("Login successful!");
             localStorage.setItem('token',res.data.token);
-            window.location.href="/views/index3.html";
+            window.location.href="index3";
         }
 
         emailValue.value = '';
